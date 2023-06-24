@@ -332,6 +332,7 @@ def first_pass_align(src_len,
             cost[i][j_offset] = best_score
             pointers[i][j_offset] = best_a
 
+        
     return pointers
 
 def find_first_search_path(src_len,

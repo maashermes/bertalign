@@ -78,6 +78,8 @@ class Bertalign:
         second_pointers, costs = second_pass_align(self.src_vecs, self.tgt_vecs, self.src_lens, self.tgt_lens,
                                             second_w, second_path, second_alignment_types,
                                             self.char_ratio, self.skip, margin=self.margin, len_penalty=self.len_penalty)
+        self.realpointers = second_pointers
+        self.costs = costs
         second_alignment = second_back_track(self.src_num, self.tgt_num, second_pointers, second_path, second_alignment_types, costs)
         
         print("Finished! Successfully aligning {} {} sentences to {} {} sentences\n".format(self.src_num, self.src_lang, self.tgt_num, self.tgt_lang))
@@ -87,8 +89,10 @@ class Bertalign:
         for bead in (self.result):
             src_line = self._get_line(bead[0], self.src_sents)
             tgt_line = self._get_line(bead[1], self.tgt_sents)
-            cost = self._get_line(bead[2], self.src_sents)
+            cost = bead[2]
             print(src_line + "\n" + tgt_line + "\n" + cost + "\n")
+
+        
 
     @staticmethod
     def _get_line(bead, lines):
