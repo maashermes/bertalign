@@ -4,16 +4,17 @@ import numpy as np
 import numba as nb
 from sys import platform
 
-def second_back_track(i, j, pointers, search_path, a_types):
+def second_back_track(i, j, pointers, search_path, a_types, costs):
     alignment = []
     while ( 1 ):
         j_offset = j - search_path[i][0]
         a = pointers[i][j_offset]
+        c = costs[i][j_offset]
         s = a_types[a][0]
         t = a_types[a][1]
         src_range = [i - offset - 1 for offset in range(s)][::-1]
         tgt_range = [j - offset - 1 for offset in range(t)][::-1]
-        alignment.append((src_range, tgt_range))
+        alignment.append((src_range, tgt_range, c))
 
         i = i-s
         j = j-t
@@ -102,7 +103,7 @@ def second_pass_align(src_vecs,
             cost[i][j_offset] = best_score
             pointers[i][j_offset] = best_a
       
-    return pointers
+    return pointers, cost
 
 @nb.jit(nopython=True, fastmath=True, cache=True)
 def calculate_similarity_score(src_vecs,
