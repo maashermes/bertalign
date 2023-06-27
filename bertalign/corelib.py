@@ -227,7 +227,7 @@ def find_second_search_path(align, w, src_len, tgt_len):
     prev_src, prev_tgt = 0, 0
     path = []
     max_w = -np.inf
-    for src, tgt in align:
+    for src, tgt in align: 
         # Limit the search path in a rectangle with the width
         # along the Y axis being (upper_bound - lower_bound).
         lower_bound = max(0, prev_tgt - w)

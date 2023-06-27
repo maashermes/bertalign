@@ -75,6 +75,8 @@ class Bertalign:
         print("Performing second-step alignment ...")
         second_alignment_types = get_alignment_types(self.max_align)
         second_w, second_path = find_second_search_path(first_alignment, self.win, self.src_num, self.tgt_num)
+        self.second_w = second_w
+        
         second_pointers, costs = second_pass_align(self.src_vecs, self.tgt_vecs, self.src_lens, self.tgt_lens,
                                             second_w, second_path, second_alignment_types,
                                             self.char_ratio, self.skip, margin=self.margin, len_penalty=self.len_penalty)
