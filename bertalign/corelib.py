@@ -14,7 +14,7 @@ def second_back_track(i, j, pointers, search_path, a_types, costs):
         t = a_types[a][1]
         src_range = [i - offset - 1 for offset in range(s)][::-1]
         tgt_range = [j - offset - 1 for offset in range(t)][::-1]
-        alignment.append((src_range, tgt_range, c))
+        alignment.append((src_range, tgt_range, c, a_types[a]))
 
         i = i-s
         j = j-t

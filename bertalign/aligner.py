@@ -94,7 +94,7 @@ class Bertalign:
             src_line = self._get_line(bead[0], self.src_sents)
             tgt_line = self._get_line(bead[1], self.tgt_sents)
             cost = bead[2]
-            print(src_line + "\n" + tgt_line + "\n" + cost + "\n")
+            print(src_line + "\n" + tgt_line + "\n")
 
         
 
